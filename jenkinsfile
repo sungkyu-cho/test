@@ -6,17 +6,14 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Install & Build Vue') {
             steps {
                 dir('vue-project') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    echo "📦 pnpm 의존성 설치 시작"
+                    sh 'pnpm install'
+
+                    echo "🏗 pnpm으로 빌드 시작"
+                    sh 'pnpm run build'
                 }
             }
         }
@@ -24,10 +21,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Vue 빌드 성공"
+            echo "✅ pnpm 빌드 성공!"
         }
         failure {
-            echo "❌ 빌드 실패"
+            echo "❌ pnpm 빌드 실패. 로그 확인 필요!"
         }
     }
 }
