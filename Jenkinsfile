@@ -10,10 +10,10 @@ pipeline {
             steps {
                 dir('vue-project') {
                     echo "📦 pnpm 의존성 설치 시작"
-                    sh 'pnpm install'
+                    bat 'pnpm install'
 
                     echo "🏗 pnpm으로 빌드 시작"
-                    sh 'pnpm run build'
+                    bat 'pnpm run build'
                 }
             }
         }
