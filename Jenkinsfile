@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Install & Build Vue') {
             steps {
-                dir('vue-project') {
+                dir('vue-test/vue-project') {
                     echo "📦 pnpm 의존성 설치 시작"
                     bat 'pnpm install'
 
