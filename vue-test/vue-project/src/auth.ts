@@ -1,4 +1,4 @@
-import { recreate } from './router/index'
+import router from './router/index'
 
 export interface UserInfo {
   email: string
@@ -35,7 +35,7 @@ export const authInfo: AuthInfo = {
   /* eslint-disable @typescript-eslint/no-unused-vars */
   async logIn(email: string, password: string) {
     try {
-      await recreate()
+      // await recreate()
 
       // Send request
       this._user = { ...defaultUser, email }

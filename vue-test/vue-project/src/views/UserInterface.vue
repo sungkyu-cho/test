@@ -21,6 +21,7 @@ import { computed, ref } from 'vue'
 import DxMenu from 'devextreme-vue/menu'
 import headerToolbar from '@/components/header-toolbar.vue'
 import service from '@/assets/data'
+import type { ItemClickEvent } from 'devextreme/ui/menu';
 const showSubmenuModes = [
   {
     name: 'onHover',
@@ -38,9 +39,9 @@ const showFirstSubmenuModes = computed(() =>
 )
 // const orientation = ref('horizontal');
 const hideSubmenuOnMouseLeave = ref(false)
-const currentProduct = ref(null)
-function itemClick(e) {
-  if (e.itemData.price) {
+const currentProduct = ref<any>(null)
+function itemClick(e: ItemClickEvent) {
+  if (e.itemData && e.itemData.price) {
     currentProduct.value = e.itemData
   }
 }

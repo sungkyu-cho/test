@@ -34,13 +34,13 @@
       <dx-item location="after" locate-in-menu="auto" menu-item-template="menuUserItem">
         <template #default>
           <div>
-            <user-panel :user="user" :menu-items="userMenuItems" menu-mode="context" />
+            <user-panel :user="userPanelUser" :menu-items="userMenuItems" menu-mode="context" />
           </div>
         </template>
       </dx-item>
 
       <template #menuUserItem>
-        <user-panel :user="user" :menu-items="userMenuItems" menu-mode="list" />
+        <user-panel :user="userPanelUser" :menu-items="userMenuItems" menu-mode="list" />
       </template>
     </dx-toolbar>
   </header>
@@ -48,7 +48,7 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { DxButton, type DxButtonTypes } from 'devextreme-vue/button'
 import { DxToolbar, DxItem } from 'devextreme-vue/toolbar'
 import { authInfo as auth, type UserInfo, type AuthUser } from '@/auth'
@@ -58,7 +58,8 @@ import UserPanel from './user-panel.vue'
 const router = useRouter()
 const route = useRoute()
 
-const user = ref<UserInfo>()
+const user = ref<UserInfo | undefined>()
+const userPanelUser = computed(() => user.value)
 
 defineProps<{
   menuToggleEnabled: boolean

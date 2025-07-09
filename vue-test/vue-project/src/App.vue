@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router'
 import config from 'devextreme/core/config';
 //import { licenseKey } from './devextreme-license'; 
 
-config({ licenseKey }); 
+//config({ licenseKey }); 
 </script>
 
 <template>

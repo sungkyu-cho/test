@@ -23,25 +23,27 @@
 <script setup lang="ts">
 import DxList from 'devextreme-vue/list'
 import { ref } from 'vue'
+import type { UserInfo } from '@/auth'
+import type { ItemClickEvent } from 'devextreme/ui/list';
 
 withDefaults(
   defineProps<{
     showAvatar: boolean
-    menuItems: Array<string>
-    user: object
+    menuItems: Array<{ text: string; icon: string; onClick: () => void }>
+    user: UserInfo | undefined
   }>(),
   {
     showAvatar: false,
-    menuItems: [],
-    user: {},
+    menuItems: () => [],
+    user: undefined,
   },
 )
 
-const userInfoListRef = ref(null)
-const onItemClick = ({ itemData }) => itemData.onClick()
+const userInfoListRef = ref<{ instance?: { focus: () => void } } | null>(null)
+const onItemClick = (e: ItemClickEvent) => e.itemData?.onClick && e.itemData.onClick()
 
 function focusList() {
-  userInfoListRef.value.instance.focus()
+  userInfoListRef.value?.instance?.focus()
 }
 
 defineExpose({ focusList })

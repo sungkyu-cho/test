@@ -35,23 +35,25 @@ import { DxDropDownButton, DxDropDownBox } from 'devextreme-vue'
 import { ref } from 'vue'
 import { type UserInfo } from '@/auth'
 import UserMenuSection from './user-menu-section.vue'
+import type { ContentReadyEvent } from 'devextreme/ui/drop_down_button';
 
 withDefaults(
   defineProps<{
     menuMode: string
-    menuItems: Array<unknown>
+    menuItems: Array<{ text: string; icon: string; onClick: () => void }>
     user: UserInfo | undefined
   }>(),
   {
     menuMode: '',
     menuItems: () => [],
+    user: undefined,
   },
 )
 
 const userMenuSectionRef = ref<InstanceType<typeof UserMenuSection>>()
 
-function handleDropDownButtonContentReady({ component }: { component: typeof DxDropDownBox }) {
-  component.registerKeyHandler('downArrow', () => {
+function handleDropDownButtonContentReady(e: ContentReadyEvent) {
+  e.component.registerKeyHandler('downArrow', () => {
     userMenuSectionRef.value?.focusList()
   })
 }
