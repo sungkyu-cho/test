@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import config from 'devextreme/core/config';
-import { licenseKey } from './devextreme-license'; 
+//import { licenseKey } from './devextreme-license'; 
 
 config({ licenseKey }); 
 </script>
